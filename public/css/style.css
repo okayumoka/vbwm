@@ -1,0 +1,47 @@
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: arial, 'メイリオ', sans-serif;
+	font-size: 12pt;
+}
+
+header {
+	width: 100%;
+	background: rgb(11,202,196);
+	color: #fff;
+}
+header h1 {
+	margin: 0;
+	padding: 10px 15px;
+	font-size: 20pt;
+}
+
+article {
+	padding: 10px 15px;
+}
+
+article h2 {
+	margin: 0;
+	padding: 15px 0;
+	font-size: 16pt;
+}
+
+table {
+	border-collapse: collapse;
+}
+th, td {
+	text-align: left;
+	max-width: 500px;
+	padding: 3px 6px;
+}
+th {
+	background: rgb(11,202,196);
+	border: solid 1px rgb(5,152,146);
+	color: #fff;
+}
+td {
+	border: solid 1px #888;
+}
+
+

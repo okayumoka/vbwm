@@ -1,0 +1,16 @@
+start vboxm.
+getVMList.
+{ Error: Command failed: C:\Program Files\Oracle\VirtualBox\VBoxManage.exe
+'C:\Program' �́A�����R�}���h�܂��͊O���R�}���h�A
+�����\�ȃv���O�����܂��̓o�b�` �t�@�C���Ƃ��ĔF�������Ă��܂����B
+
+    at ChildProcess.exithandler (child_process.js:206:12)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:191:7)
+    at maybeClose (internal/child_process.js:877:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+  killed: false,
+  code: 1,
+  signal: null,
+  cmd: 'C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe' }
+
