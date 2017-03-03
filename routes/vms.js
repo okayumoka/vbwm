@@ -8,35 +8,45 @@ const vboxm = require('../vm/vboxm.js');
 router.get('/vm/list', function (req, res) {
 	let vmList = vboxm.getVMInfoList();
 
-	let data = vmList.map((info) => {
+	let list = vmList.map((info) => {
 		return {
 			name: info.Name,
 			uuid: info.UUID,
 			state: info.State.substring(0, info.State.indexOf(' (since'))
 		};
 	});
-    res.send(data);
+    res.send({ action: 'list', status: 'success', list: list});
 });
 
 router.get('/vm/start/:uuid', function (req, res) {
-	// console.log(req.params);
-	// console.log(req.query);
 	let stdout = vboxm.start(req.params.uuid);
-    res.send({ status: 'success', message: stdout });
+    res.send({ action: 'start', status: 'success', message: stdout });
 });
 
 router.get('/vm/stop/:uuid', function (req, res) {
-	// console.log(req.params);
-	// console.log(req.query);
 	let stdout = vboxm.stop(req.params.uuid);
-    res.send({ status: 'success', message: stdout });
+    res.send({ action: 'stop', status: 'success', message: stdout });
 });
 
+router.get('/vm/resume/:uuid', function (req, res) {
+	let stdout = vboxm.resume(req.params.uuid);
+    res.send({ action: 'resume', status: 'success', message: stdout });
+});
+
+router.get('/vm/pause/:uuid', function (req, res) {
+	let stdout = vboxm.pause(req.params.uuid);
+    res.send({ action: 'pause', status: 'success', message: stdout });
+});
+
+router.get('/vm/poweroff/:uuid', function (req, res) {
+	let stdout = vboxm.poweroff(req.params.uuid);
+    res.send({ action: 'pause', status: 'success', message: stdout });
+});
+
+
 router.get('/vm/info/:uuid', function (req, res) {
-	// console.log(req.params);
-	// console.log(req.query);
 	let stdout = vboxm.getVMInfo(req.params.uuid);
-    res.send({ status: 'success', message: '', info: stdout });
+    res.send({ action: 'info', status: 'success', message: '', info: stdout });
 });
 
 module.exports = router;

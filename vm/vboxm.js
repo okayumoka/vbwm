@@ -92,8 +92,26 @@ exports.stop = function(uuid) {
 	return iconv.decode(stdout, encoding);
 };
 
+exports.resume = function(uuid) {
+	let cmd = `${managerPath} controlvm ${uuid} resume`;
+	let stdout = execSync(cmd);
+	return iconv.decode(stdout, encoding);
+};
+
+exports.pause = function(uuid) {
+	let cmd = `${managerPath} controlvm ${uuid} pause`;
+	let stdout = execSync(cmd);
+	return iconv.decode(stdout, encoding);
+};
+
 exports.poweroff = function(uuid) {
 	let cmd = `${managerPath} controlvm ${uuid} poweroff`;
+	let stdout = execSync(cmd);
+	return iconv.decode(stdout, encoding);
+};
+
+exports.acpipowerbutton = function(uuid) {
+	let cmd = `${managerPath} controlvm ${uuid} acpipowerbutton`;
 	let stdout = execSync(cmd);
 	return iconv.decode(stdout, encoding);
 };

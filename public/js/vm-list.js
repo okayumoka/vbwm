@@ -7,11 +7,13 @@ $(function() {
 		'<table class="vm-list-table">' + 
 		'<thead>' + 
 		'<tr>' + 
-		'<th>Name</th>' + 
-		'<th>UUID</th>' + 
+		'<th>Name (UUID)</th>' + 
 		'<th>State</th>' + 
 		'<th>Start</th>' + 
 		'<th>Stop</th>' + 
+		'<th>Resume</th>' + 
+		'<th>Pause</th>' + 
+		'<th>Poser Off</th>' + 
 		'<th>Info</th>' + 
 		'</tr>' + 
 		'</thead>' + 
@@ -20,12 +22,14 @@ $(function() {
 		'</table>';
 	var rowHtml = 
 		'<tr class="vm-list-table-row">' +
-		'<td class="label-name"></td>' +
-		'<td class="label-uuid"></td>' +
+		'<td><span class="label-name"></span><br><span class="label-uuid"></span></td>' +
 		'<td class="label-state"></td>' +
-		'<td><button class="button-vmstart">Start</button></td>' +
-		'<td><button class="button-vmstop">Stop</button></td>' +
-		'<td><button class="button-vminfo">Info</button></td>' +
+		'<td><button class="button-vmstart" uuid="{uuid}">Start</button></td>' +
+		'<td><button class="button-vmstop" uuid="{uuid}">Stop (Save state)</button></td>' +
+		'<td><button class="button-vmresume" uuid="{uuid}">Resume</button></td>' +
+		'<td><button class="button-vmpause" uuid="{uuid}">Pause</button></td>' +
+		'<td><button class="button-vmpoweroff" uuid="{uuid}">Power Off</button></td>' +
+		'<td><button class="button-vminfo" uuid="{uuid}">Info</button></td>' +
 		'</tr>';
 
 	var table;
@@ -35,13 +39,22 @@ $(function() {
 		table = $(baseHtml).appendTo($(target));
 		tbody = table.find('tbody');
 		table.on('click', 'button.button-vmstart', function() {
-			onClickVmStart($(this).attr('uuid'));
+			onClickControlVm($(this).attr('uuid'), 'start');
 		});
 		table.on('click', 'button.button-vmstop', function() {
-			onClickVmStop($(this).attr('uuid'));
+			onClickControlVm($(this).attr('uuid'), 'stop');
+		});
+		table.on('click', 'button.button-vmresume', function() {
+			onClickControlVm($(this).attr('uuid'), 'resume');
+		});
+		table.on('click', 'button.button-vmpause', function() {
+			onClickControlVm($(this).attr('uuid'), 'pause');
+		});
+		table.on('click', 'button.button-vmpoweroff', function() {
+			onClickControlVm($(this).attr('uuid'), 'poweroff');
 		});
 		table.on('click', 'button.button-vminfo', function() {
-			onClickVmInfo($(this).attr('uuid'));
+			onClickControlVm($(this).attr('uuid'), 'info');
 		});
 	};
 
@@ -52,12 +65,15 @@ $(function() {
 	var getVmList = function() {
 		window.Loading.show();
 		$.ajax({
-			url: baseUrl + '/vm/list',
-			method: 'GET',
-			dataType: 'json'
+			'url': baseUrl + '/vm/list',
+			'method': 'GET',
+			'dataType': 'json',
+			'timeout': 60000
 		}).done(function(data) {
 			console.log(data);
-			drawTable(data);
+			if (checkServerError(data)) {
+				drawTable(data.list);
+			}
 			window.Loading.hide();
 		}).fail(function(jqXHR, textStatus) {
 			// TODO エラー処理
@@ -79,10 +95,39 @@ $(function() {
 			row.find('.label-name').text(d.name);
 			row.find('.label-uuid').text(d.uuid);
 			row.find('.label-state').text(d.state);
-			row.find('.button-vmstart').attr('uuid', d.uuid);
-			row.find('.button-vmstop').attr('uuid', d.uuid);
-			row.find('.button-vminfo').attr('uuid', d.uuid);
+			// row.find('.button-vmstart').attr('uuid', d.uuid);
+			// row.find('.button-vmstop').attr('uuid', d.uuid);
+			// row.find('.button-vmresume').attr('uuid', d.uuid);
+			// row.find('.button-vmpause').attr('uuid', d.uuid);
+			// row.find('.button-vminfo').attr('uuid', d.uuid);
+			row.find('[uuid="{uuid}"]').attr('uuid', d.uuid);
 			row.appendTo(tbody);
+
+			switch (d.state) {
+				case 'saved':
+				case 'powered off':
+					row.find('.button-vmstart').prop('disabled', false);
+					row.find('.button-vmstop').prop('disabled', true);
+					row.find('.button-vmresume').prop('disabled', true);
+					row.find('.button-vmpause').prop('disabled', true);
+					row.find('.button-vmpoweroff').prop('disabled', true);
+					break;
+				case 'paused':
+					row.find('.button-vmstart').prop('disabled', true);
+					row.find('.button-vmstop').prop('disabled', true);
+					row.find('.button-vmresume').prop('disabled', false);
+					row.find('.button-vmpause').prop('disabled', true);
+					row.find('.button-vmpoweroff').prop('disabled', true);
+					break;
+				case 'running':
+				default:
+					row.find('.button-vmstart').prop('disabled', true);
+					row.find('.button-vmstop').prop('disabled', false);
+					row.find('.button-vmresume').prop('disabled', true);
+					row.find('.button-vmpause').prop('disabled', false);
+					row.find('.button-vmpoweroff').prop('disabled', false);
+					break;
+			}
 		}
 	};
 
@@ -98,13 +143,15 @@ $(function() {
 		return true;
 	};
 
-	var onClickVmStart = function(uuid) {
+	var onClickControlVm = function(uuid, action) {
+		console.log(action + ' : ' + uuid);
 		window.Loading.show();
 		$.ajax({
-			'url': baseUrl + '/vm/start/' + uuid,
+			'url': baseUrl + '/vm/' + action + '/' + uuid,
 			'method': 'GET',
 			'async': true,
-			'dataType': 'json'
+			'dataType': 'json',
+			'timeout': 60000
 		}).done(function(data) {
 			window.Loading.hide();
 			console.log(data);
@@ -115,44 +162,26 @@ $(function() {
 			window.Loading.hide();
 			alert(textStatus);
 		});
+	};
+
+	var onClickVmStart = function(uuid) {
+		onClickControlVm(uuid, 'start');
 	};
 
 	var onClickVmStop = function(uuid) {
-		window.Loading.show();
-		$.ajax({
-			'url': baseUrl + '/vm/stop/' + uuid,
-			'method': 'GET',
-			'async': true,
-			'dataType': 'json'
-		}).done(function(data) {
-			window.Loading.hide();
-			console.log(data);
-			if (checkServerError(data)) {
-				getVmList(); // 再読み込み
-			}
-		}).fail(function(jqXHR, textStatus) {
-			window.Loading.hide();
-			alert(textStatus);
-		});
+		onClickControlVm(uuid, 'stop');
+	};
+
+	var onClickVmResume = function(uuid) {
+		onClickControlVm(uuid, 'resume');
+	};
+
+	var onClickVmPause = function(uuid) {
+		onClickControlVm(uuid, 'pause');
 	};
 
 	var onClickVmInfo = function(uuid) {
-		window.Loading.show();
-		$.ajax({
-			'url': baseUrl + '/vm/info/' + uuid,
-			'method': 'GET',
-			'async': true,
-			'dataType': 'json'
-		}).done(function(data) {
-			window.Loading.hide();
-			console.log(data);
-			if (checkServerError(data)) {
-				window.VmInfo.show(data.info);
-			}
-		}).fail(function(jqXHR, textStatus) {
-			window.Loading.hide();
-			alert(textStatus);
-		});
+		onClickControlVm(uuid, 'info');
 	};
 
 	init();
