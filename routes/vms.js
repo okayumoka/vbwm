@@ -10,7 +10,7 @@ router.get('/vm/list', function (req, res) {
 
 	let list = vmList.map((info) => {
 		return {
-			name: info.Name,
+			name: info.name,
 			uuid: info.UUID,
 			state: info.State.substring(0, info.State.indexOf(' (since'))
 		};
