@@ -1,10 +1,11 @@
 const iconv = require('iconv-lite');
 const execSync = require('child_process').execSync;
+const config = require('../config');
 
-const basePath = 'C:/Program Files/Oracle/VirtualBox';
-const managerPath = `"${basePath}/VBoxManage"`;
-const encoding = 'Shift_JIS';
-const uuidLength = 38;
+const basePath = config.basePath;
+const managerPath = config.managerPath;
+const encoding = config.encoding;
+const uuidLength = config.uuidLength;
 
 // VBoxManage list を実行する
 var execListVms = function(opt = 'vms') {
