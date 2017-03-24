@@ -51,6 +51,12 @@ article h2 {
 .vm-list-table .label-uuid {
 	font-size: 0.8em;
 }
+.vm-list-table .state-running {
+	color: red;
+}
+.vm-list-table .state-stoped {
+	color: blue;
+}
 
 
 .vm-info-table {

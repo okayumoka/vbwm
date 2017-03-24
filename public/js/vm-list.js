@@ -94,7 +94,9 @@ $(function() {
 			var row = $(rowHtml);
 			row.find('.label-name').text(d.name);
 			row.find('.label-uuid').text(d.uuid);
-			row.find('.label-state').text(d.state);
+			row.find('.label-state').text(d.state)
+				.removeClass('state-running state-stoped')
+				.addClass(d.state == 'running' ? 'state-running' : 'state-stoped');
 			// row.find('.button-vmstart').attr('uuid', d.uuid);
 			// row.find('.button-vmstop').attr('uuid', d.uuid);
 			// row.find('.button-vmresume').attr('uuid', d.uuid);
