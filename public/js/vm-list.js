@@ -9,12 +9,12 @@ $(function() {
 		'<tr>' + 
 		'<th>Name (UUID)</th>' + 
 		'<th>State</th>' + 
+		'<th>Info</th>' + 
 		'<th>Start</th>' + 
 		'<th>Stop</th>' + 
 		'<th>Resume</th>' + 
 		'<th>Pause</th>' + 
 		'<th>Poser Off</th>' + 
-		'<th>Info</th>' + 
 		'</tr>' + 
 		'</thead>' + 
 		'<tbody>' + 
@@ -22,14 +22,14 @@ $(function() {
 		'</table>';
 	var rowHtml = 
 		'<tr class="vm-list-table-row">' +
-		'<td><span class="label-name"></span><br><span class="label-uuid"></span></td>' +
+		'<td><span class="label-name"></span><br>(<span class="label-uuid"></span>)</td>' +
 		'<td class="label-state"></td>' +
+		'<td><button class="button-vminfo" uuid="{uuid}">Info</button></td>' +
 		'<td><button class="button-vmstart" uuid="{uuid}">Start</button></td>' +
 		'<td><button class="button-vmstop" uuid="{uuid}">Stop (Save state)</button></td>' +
 		'<td><button class="button-vmresume" uuid="{uuid}">Resume</button></td>' +
 		'<td><button class="button-vmpause" uuid="{uuid}">Pause</button></td>' +
 		'<td><button class="button-vmpoweroff" uuid="{uuid}">Power Off</button></td>' +
-		'<td><button class="button-vminfo" uuid="{uuid}">Info</button></td>' +
 		'</tr>';
 
 	var table;
@@ -144,6 +144,12 @@ $(function() {
 	};
 
 	var onClickControlVm = function(uuid, action) {
+		if (action != 'info') {
+			var confirmMes = action + ' VM ?\nUUID : ' + uuid;
+			if(!window.confirm(confirmMes)) {
+				return;
+			}
+		}
 		console.log(action + ' : ' + uuid);
 		window.Loading.show();
 		$.ajax({
@@ -156,7 +162,11 @@ $(function() {
 			window.Loading.hide();
 			console.log(data);
 			if (checkServerError(data)) {
-				getVmList(); // 再読み込み
+				if (action == 'info') {
+					VmInfo.show(data.info);
+				} else {
+					getVmList(); // 再読み込み
+				}
 			}
 		}).fail(function(jqXHR, textStatus) {
 			window.Loading.hide();

@@ -27,21 +27,50 @@ article h2 {
 	font-size: 16pt;
 }
 
-table {
+.vm-list-table {
 	border-collapse: collapse;
 }
-th, td {
+.vm-list-table th, td {
 	text-align: left;
 	max-width: 500px;
-	padding: 3px 6px;
+	padding: 5px 10px;
 }
-th {
+.vm-list-table th {
 	background: rgb(11,202,196);
 	border: solid 1px rgb(5,152,146);
 	color: #fff;
 }
-td {
+.vm-list-table td {
 	border: solid 1px #888;
+	white-space: nowrap;
 }
 
+.vm-list-table .label-name {
+	font-weight: bold;
+}
+.vm-list-table .label-uuid {
+	font-size: 0.8em;
+}
+
+
+.vm-info-table {
+	border-collapse: collapse;
+}
+.vm-info-table th, td {
+	text-align: left;
+	max-width: 500px;
+	padding: 5px 10px;
+}
+.vm-info-table th {
+	background: rgb(11,202,196);
+	border: solid 1px rgb(5,152,146);
+	color: #fff;
+}
+.vm-info-table td {
+	border: solid 1px #888;
+	font-size: 0.8em;
+}
+.vm-info-table .key {
+	white-space: nowrap;
+}
 

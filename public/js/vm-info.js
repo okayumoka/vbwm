@@ -4,7 +4,7 @@ $(function() {
 		var method = {};
 		var target = '#vm-info';
 		var baseHtml = 
-			'<table class="vm-list-table">' + 
+			'<table class="vm-info-table">' + 
 			'<thead>' + 
 			'<tr>' + 
 			'<th>Key</th>' + 
@@ -15,7 +15,7 @@ $(function() {
 			'</tbody>' + 
 			'</table>';
 		var rowHtml = 
-			'<tr class="vm-list-table-row">' +
+			'<tr class="vm-info-table-row">' +
 			'<td class="key"></td>' +
 			'<td class="value"></td>' +
 			'</tr>';
