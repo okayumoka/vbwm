@@ -72,7 +72,7 @@ exports.getVMInfo = function(uuid) {
  */
 exports.getVMInfoList = function() {
 	let vmList = exports.getVMList();
-	console.log(vmList);
+	//console.log(vmList);
 
 	let infoList = [];
 	vmList.forEach((vm) => {

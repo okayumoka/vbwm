@@ -68,7 +68,7 @@ $(function() {
 			'url': baseUrl + '/vm/list',
 			'method': 'GET',
 			'dataType': 'json',
-			'timeout': 60000
+			'timeout': 300000
 		}).done(function(data) {
 			console.log(data);
 			if (checkServerError(data)) {
