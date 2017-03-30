@@ -5,11 +5,15 @@
 	<title><%= title %></title>
 
 	<!-- libs -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="./lib/jquery.plainmodal.min.js"></script>
 
 	<!-- styles -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="./css/loader.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
 
 	<!-- scripts -->
 	<script src="./js/common.js"></script>
@@ -22,14 +26,14 @@
 		<h1><%= title %></h1>
 	</header>
 
-	<article>
+	<article id="vm-list-screen">
 		<h2>VM List :</h2>
 		<div id="vm-list">
 			<!-- insert virtual machine list into here. -->
 		</div>
 	</article>
 
-	<article>
+	<article id="vm-info-screen">
 		<h2>VM Info :</h2>
 		<div id="vm-info">
 			<!-- insert virtual machine infomation into here. -->

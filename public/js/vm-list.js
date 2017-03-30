@@ -3,63 +3,56 @@ $(function() {
 
 	var target = '#vm-list';
 	var baseUrl = '.';
-	var baseHtml = 
-		'<table class="vm-list-table">' + 
-		'<thead>' + 
-		'<tr>' + 
-		'<th>Name (UUID)</th>' + 
-		'<th>State</th>' + 
-		'<th>Info</th>' + 
-		'<th>Start</th>' + 
-		'<th>Stop</th>' + 
-		'<th>Resume</th>' + 
-		'<th>Pause</th>' + 
-		'<th>Poser Off</th>' + 
-		'</tr>' + 
-		'</thead>' + 
-		'<tbody>' + 
-		'</tbody>' + 
-		'</table>';
-	var rowHtml = 
-		'<tr class="vm-list-table-row">' +
-		'<td><span class="label-name"></span><br>(<span class="label-uuid"></span>)</td>' +
-		'<td class="label-state"></td>' +
-		'<td><button class="button-vminfo" uuid="{uuid}">Info</button></td>' +
-		'<td><button class="button-vmstart" uuid="{uuid}">Start</button></td>' +
-		'<td><button class="button-vmstop" uuid="{uuid}">Stop (Save state)</button></td>' +
-		'<td><button class="button-vmresume" uuid="{uuid}">Resume</button></td>' +
-		'<td><button class="button-vmpause" uuid="{uuid}">Pause</button></td>' +
-		'<td><button class="button-vmpoweroff" uuid="{uuid}">Power Off</button></td>' +
-		'</tr>';
-
-	var table;
-	var tbody;
+	var baseHtml =
+		'<div class="vm-list">' + 
+		'</div>';
+	var vmHtml =
+		'<div class="vm">' +
+		'  <div class="label-name"></div>' +
+		'  <div class="info">' +
+		'    <div class="state">' +
+		'      <i class="running fa fa-check-circle" aria-hidden="true"></i>' +
+		'      <i class="stoped fa fa-minus-square" aria-hidden="true"></i>' +
+		'      <div class="label-state"></div>' +
+		'    </div>' +
+		'    <div class="uuid"><div class="label-uuid"></div></div>' +
+		'    <div class="os"><div class="label-os"></div></div>' +
+		'    <div class="mem">Mem:<div class="label-mem"></div></div>' +
+		'  </div>' +
+		'  <div class="control">' +
+		'    <button class="button-vminfo" uuid="{uuid}">Info</button>' +
+		'    <button class="button-vmstart" uuid="{uuid}">Start</button>' +
+		'    <button class="button-vmstop" uuid="{uuid}">Stop (Save state)</button>' +
+		'    <button class="button-vmresume" uuid="{uuid}">Resume</button>' +
+		'    <button class="button-vmpause" uuid="{uuid}">Pause</button>' +
+		'    <button class="button-vmpoweroff" uuid="{uuid}">Power Off</button>' +
+		'  </div>' +
+		'</div>';
+	var baseDiv = $(baseHtml).appendTo($(target));
 
 	var init = function() {
-		table = $(baseHtml).appendTo($(target));
-		tbody = table.find('tbody');
-		table.on('click', 'button.button-vmstart', function() {
+		baseDiv.on('click', 'button.button-vmstart', function() {
 			onClickControlVm($(this).attr('uuid'), 'start');
 		});
-		table.on('click', 'button.button-vmstop', function() {
+		baseDiv.on('click', 'button.button-vmstop', function() {
 			onClickControlVm($(this).attr('uuid'), 'stop');
 		});
-		table.on('click', 'button.button-vmresume', function() {
+		baseDiv.on('click', 'button.button-vmresume', function() {
 			onClickControlVm($(this).attr('uuid'), 'resume');
 		});
-		table.on('click', 'button.button-vmpause', function() {
+		baseDiv.on('click', 'button.button-vmpause', function() {
 			onClickControlVm($(this).attr('uuid'), 'pause');
 		});
-		table.on('click', 'button.button-vmpoweroff', function() {
+		baseDiv.on('click', 'button.button-vmpoweroff', function() {
 			onClickControlVm($(this).attr('uuid'), 'poweroff');
 		});
-		table.on('click', 'button.button-vminfo', function() {
+		baseDiv.on('click', 'button.button-vminfo', function() {
 			onClickControlVm($(this).attr('uuid'), 'info');
 		});
 	};
 
 	var clear = function() {
-		table.find('tbody').empty();
+		baseDiv.empty();
 	};
 
 	var getVmList = function() {
@@ -72,7 +65,7 @@ $(function() {
 		}).done(function(data) {
 			console.log(data);
 			if (checkServerError(data)) {
-				drawTable(data.list);
+				render(data.list);
 			}
 			window.Loading.hide();
 		}).fail(function(jqXHR, textStatus) {
@@ -82,55 +75,66 @@ $(function() {
 		});
 	};
 
-	var drawTable = function(data) {
+	var render = function(data) {
 		clear();
 		if (data == null || data.length == 0) {
 			return;
 		}
-		console.log(data.length);
 
 		for (var i = 0; i < data.length; i++) {
 			var d = data[i];
-			var row = $(rowHtml);
-			row.find('.label-name').text(d.name);
-			row.find('.label-uuid').text(d.uuid);
-			row.find('.label-state').text(d.state)
-				.removeClass('state-running state-stoped')
+			var vm = $(vmHtml);
+			vm.find('.label-name').text(d['name']);
+			vm.find('.label-uuid').text(d['UUID']);
+			vm.find('.label-state').text(getStateText(d['state']));
+			vm.find('.label-os').text(d['Guest OS']);
+			vm.find('.label-mem').text(d['Memory size']);
+			vm.find('.state').removeClass('state-running state-stoped')
 				.addClass(d.state == 'running' ? 'state-running' : 'state-stoped');
-			// row.find('.button-vmstart').attr('uuid', d.uuid);
-			// row.find('.button-vmstop').attr('uuid', d.uuid);
-			// row.find('.button-vmresume').attr('uuid', d.uuid);
-			// row.find('.button-vmpause').attr('uuid', d.uuid);
-			// row.find('.button-vminfo').attr('uuid', d.uuid);
-			row.find('[uuid="{uuid}"]').attr('uuid', d.uuid);
-			row.appendTo(tbody);
+			vm.find('[uuid="{uuid}"]').attr('uuid', d['UUID']);
+			vm.appendTo(baseDiv);
 
 			switch (d.state) {
 				case 'saved':
 				case 'powered off':
-					row.find('.button-vmstart').prop('disabled', false);
-					row.find('.button-vmstop').prop('disabled', true);
-					row.find('.button-vmresume').prop('disabled', true);
-					row.find('.button-vmpause').prop('disabled', true);
-					row.find('.button-vmpoweroff').prop('disabled', true);
+					vm.find('.button-vmstart').prop('disabled', false);
+					vm.find('.button-vmstop').prop('disabled', true);
+					vm.find('.button-vmresume').prop('disabled', true);
+					vm.find('.button-vmpause').prop('disabled', true);
+					vm.find('.button-vmpoweroff').prop('disabled', true);
 					break;
 				case 'paused':
-					row.find('.button-vmstart').prop('disabled', true);
-					row.find('.button-vmstop').prop('disabled', true);
-					row.find('.button-vmresume').prop('disabled', false);
-					row.find('.button-vmpause').prop('disabled', true);
-					row.find('.button-vmpoweroff').prop('disabled', true);
+					vm.find('.button-vmstart').prop('disabled', true);
+					vm.find('.button-vmstop').prop('disabled', true);
+					vm.find('.button-vmresume').prop('disabled', false);
+					vm.find('.button-vmpause').prop('disabled', true);
+					vm.find('.button-vmpoweroff').prop('disabled', true);
 					break;
 				case 'running':
 				default:
-					row.find('.button-vmstart').prop('disabled', true);
-					row.find('.button-vmstop').prop('disabled', false);
-					row.find('.button-vmresume').prop('disabled', true);
-					row.find('.button-vmpause').prop('disabled', false);
-					row.find('.button-vmpoweroff').prop('disabled', false);
+					vm.find('.button-vmstart').prop('disabled', true);
+					vm.find('.button-vmstop').prop('disabled', false);
+					vm.find('.button-vmresume').prop('disabled', true);
+					vm.find('.button-vmpause').prop('disabled', false);
+					vm.find('.button-vmpoweroff').prop('disabled', false);
 					break;
 			}
 		}
+	};
+
+	var getStateText = function(state) {
+			switch (state) {
+				case 'saved': 
+					return 'Saved';
+				case 'powered off': 
+					return 'Powered OFF';
+				case 'paused': 
+					return 'Paused';
+				case 'running':
+					return 'Running';
+				default: 
+					return state;
+			}
 	};
 
 	var checkServerError = function(data) {

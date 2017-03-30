@@ -8,14 +8,20 @@ const vboxm = require('../vm/vboxm.js');
 router.get('/vm/list', function (req, res) {
 	let vmList = vboxm.getVMInfoList();
 
-	let list = vmList.map((info) => {
-		return {
-			name: info.name,
-			uuid: info.UUID,
-			state: info.State.substring(0, info.State.indexOf(' (since'))
-		};
+
+	vmList.forEach((info) => {
+		info.state = info.State.substring(0, info.State.indexOf(' (since'))
 	});
-    res.send({ action: 'list', status: 'success', list: list});
+	res.send({ action: 'list', status: 'success', list: vmList});
+	// let list = vmList.map((info) => {
+	// 	return {
+	// 		name: info.name,
+	// 		uuid: info.UUID,
+	// 		state: info.State.substring(0, info.State.indexOf(' (since'))
+	// 		os: info['']
+	// 	};
+	// });
+	// res.send({ action: 'list', status: 'success', list: list});
 });
 
 router.get('/vm/start/:uuid', function (req, res) {

@@ -1,22 +1,43 @@
 
+/* https://color.adobe.com/ja/Digerati-color-theme-231178/ */
+/* #52656B グレー */
+/* #FF3B77 ピンク */
+/* #CDFF00 グリーン */
+/* #FFFFFF 白 */
+/* #B8B89F ベージュ */
+
+/* #73D100 グリーン② */
+
 html, body {
 	margin: 0;
 	padding: 0;
-	font-family: arial, 'メイリオ', sans-serif;
-	font-size: 12pt;
+	font-family: 'Roboto', arial, 'メイリオ', sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 header {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
 	width: 100%;
-	background: rgb(11,202,196);
-	color: #fff;
+	background: #52656B;
+	color: #FFFFFF;
 }
 header h1 {
 	margin: 0;
 	padding: 10px 15px;
-	font-size: 20pt;
+	font-size: 1.5em;
 }
 
+header + article {
+	margin-top: 50px;
+}
 article {
 	padding: 10px 15px;
 }
@@ -24,43 +45,119 @@ article {
 article h2 {
 	margin: 0;
 	padding: 15px 0;
-	font-size: 16pt;
+	font-size: 1.3em;
 }
 
-.vm-list-table {
-	border-collapse: collapse;
-}
-.vm-list-table th,
-.vm-list-table td {
-	text-align: left;
-	padding: 5px 10px;
-}
-.vm-list-table th {
-	background: rgb(11,202,196);
-	border: solid 1px rgb(5,152,146);
-	color: #fff;
-}
-.vm-list-table td {
-	border: solid 1px #888;
-	white-space: nowrap;
+.vm-list {
 }
 
-.vm-list-table .label-name {
+.vm-list .vm {
+	position: relative;
+	width: 100%;
+	min-width: 500px;
+	border: solid 1px #B8B89F;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.vm-list .vm .info {
+	margin-bottom: 15px;
+}
+.vm-list .vm .label-name {
+	display: block;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: solid 1px #B8B89F;
+}
+
+.vm-list .vm .state {
+	position: relative;
+	display: inline-block;
+	border-right: solid 1px #aaa;
+	padding: 0 10px 0 26px;
 	font-weight: bold;
 }
-.vm-list-table .label-uuid {
-	font-size: 0.8em;
+.vm-list .vm .label-state {
+	display: inline-block;
 }
-.vm-list-table .state-running {
-	color: red;
+.vm-list .vm .state i {
+	display: inline-block;
+	position: absolute;
+	top: -4px;
+	left: 0;
+	font-size: 24px;
 }
-.vm-list-table .state-stoped {
-	color: blue;
+.vm-list .vm .state i.running { color: #73D100; }
+.vm-list .vm .state i.stoped { color: #FF3B77; }
+.vm-list .vm .state-running i.running { display: inline-block; }
+.vm-list .vm .state-running i.stoped { display: none; }
+.vm-list .vm .state-stoped i.running { display: none; }
+.vm-list .vm .state-stoped i.stoped { display: inline-block; }
+
+.vm-list .vm .uuid {
+	display: none;
+	border-right: solid 1px #aaa;
+	padding: 0 10px 0 10px;
+}
+.vm-list .vm .label-uuid {
+	display: inline-block;
+	vertical-align: middle;
+}
+.vm-list .vm .os {
+	display: inline-block;
+	border-right: solid 1px #aaa;
+	padding: 0 10px 0 10px;
+}
+.vm-list .vm .mem {
+	display: inline-block;
+	/* border-right: solid 1px #aaa; */
+	padding: 0 10px 0 10px;
+}
+.vm-list .vm .label-mem {
+	display: inline-block;
+	margin-left: 4px;
 }
 
+
+.vm-list .vm button {
+	background: none;
+	border-radius: 4px;
+	border: solid 1px #FF3B77;
+	color: #FF3B77;
+	font-size: 1em;
+	font-weight: normal;
+	padding: 5px 20px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	transition-duration: 300ms;
+}
+.vm-list .vm button:hover {
+	cursor: pointer;
+	background: #FF3B77;
+	color: #FFFFFF;
+	transition-duration: 300ms;
+}
+.vm-list .vm button:disabled {
+	cursor: unset;
+	background: none;
+	border: solid 1px #B8B89F;
+	color: #B8B89F;
+}
+
+#vm-info-screen {
+	display: none;
+	background: #FFFFFF;
+	width: auto;
+	height: 90%;
+	overflow: auto;
+	padding: 15px;
+}
 
 .vm-info-table {
 	border-collapse: collapse;
+	margin-bottom: 15px;
 }
 .vm-info-table th, 
 .vm-info-table td {

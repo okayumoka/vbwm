@@ -2,6 +2,7 @@
 $(function() {
 	window.VmInfo = (function() {
 		var method = {};
+		var screen = '#vm-info-screen';
 		var target = '#vm-info';
 		var baseHtml = 
 			'<table class="vm-info-table">' + 
@@ -33,8 +34,6 @@ $(function() {
 		};
 
 		method.show = function(info) {
-			$(target).show();
-
 			clear();
 			if (info == null) {
 				return;
@@ -46,10 +45,12 @@ $(function() {
 				row.find('.value').text(info[key]);
 				row.appendTo(tbody);
 			}
+
+			$(screen).plainModal('open');
 		};
 
 		method.hide = function() {
-			$(target).hide();
+			$(screen).plainModal('close');
 		};
 
 		init();
