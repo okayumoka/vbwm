@@ -57,7 +57,7 @@ article h2 {
 	min-width: 500px;
 	border: solid 1px #B8B89F;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 10px 10px 0 10px;
 	margin-bottom: 10px;
 }
 .vm-list .vm .info {
@@ -149,30 +149,33 @@ article h2 {
 #vm-info-screen {
 	display: none;
 	background: #FFFFFF;
-	width: auto;
-	height: 90%;
-	overflow: auto;
 	padding: 15px;
+	width: auto;
+	border: solid 1px #52656B;
+	border-radius: 10px;
 }
-
+#vm-info {
+	overflow: auto;
+	height: 400px;
+	padding: 1px;
+}
 .vm-info-table {
 	border-collapse: collapse;
-	margin-bottom: 15px;
 }
 .vm-info-table th, 
 .vm-info-table td {
 	text-align: left;
 	max-width: 500px;
-	padding: 3px 5px;
+	padding: 5px 10px;
 }
 .vm-info-table th {
-	background: rgb(11,202,196);
-	border: solid 1px rgb(5,152,146);
+	background: #52656B;
+	border: solid 1px #888;
 	color: #fff;
 }
 .vm-info-table td {
-	border: solid 1px #888;
-	font-size: 0.8em;
+	border: solid 1px #52656B;
+	font-size: 0.9em;
 }
 .vm-info-table .key {
 	white-space: nowrap;

@@ -8,8 +8,6 @@ $(function() {
 			'<table class="vm-info-table">' + 
 			'<thead>' + 
 			'<tr>' + 
-			'<th>Key</th>' + 
-			'<th>Value</th>' + 
 			'</tr>' + 
 			'</thead>' + 
 			'<tbody>' + 
@@ -17,7 +15,7 @@ $(function() {
 			'</table>';
 		var rowHtml = 
 			'<tr class="vm-info-table-row">' +
-			'<td class="key"></td>' +
+			'<th class="key"></td>' +
 			'<td class="value"></td>' +
 			'</tr>';
 
