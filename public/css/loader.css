@@ -1,3 +1,8 @@
+/* #52656B グレー */
+/* #FF3B77 ピンク */
+/* #CDFF00 グリーン */
+/* #FFFFFF 白 */
+/* #B8B89F ベージュ */
 .loader,
 .loader:before,
 .loader:after {
@@ -10,8 +15,8 @@
   animation: load7 1.8s infinite ease-in-out;
 }
 .loader {
-  color: #0fe8e2;
-  font-size: 10px;
+  color: #FFFFFF;
+  font-size: 12px;
   margin: 80px auto;
   position: relative;
   text-indent: -9999em;

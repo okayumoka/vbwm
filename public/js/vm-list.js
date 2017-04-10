@@ -29,6 +29,7 @@ $(function() {
 		'  </div>' +
 		'</div>';
 	var baseDiv = $(baseHtml).appendTo($(target));
+	var vmData = null;
 
 	var init = function() {
 		baseDiv.on('click', 'button.button-vmstart', function() {
@@ -65,6 +66,7 @@ $(function() {
 		}).done(function(data) {
 			console.log(data);
 			if (checkServerError(data)) {
+				vmData = data.list;
 				render(data.list);
 			}
 			window.Loading.hide();
@@ -149,9 +151,22 @@ $(function() {
 		return true;
 	};
 
+	var getVmNameByUUID = function(uuid) {
+		if (uuid == null || vmData == null) return '';
+		for (var i = 0; i < vmData.length; i++) {
+			console.log(vmData[i].UUID);
+			if (vmData[i].UUID == uuid) {
+				return vmData[i].name;
+			}
+		}
+		return '';
+	};
+
 	var onClickControlVm = function(uuid, action) {
 		if (action != 'info') {
-			var confirmMes = action + ' VM ?\nUUID : ' + uuid;
+			var vmName = getVmNameByUUID(uuid);
+			var actionName = action.substring(0,1).toUpperCase() + action.substring(1);
+			var confirmMes = actionName + ' VM : ' + vmName + ' ?';
 			if(!window.confirm(confirmMes)) {
 				return;
 			}
