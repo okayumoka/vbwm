@@ -44,6 +44,7 @@ $(function() {
 				row.appendTo(tbody);
 			}
 
+			$(target).scrollTop(0);
 			$(screen).plainModal('open');
 		};
 

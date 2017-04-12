@@ -91,8 +91,10 @@ $(function() {
 			vm.find('.label-state').text(getStateText(d['state']));
 			vm.find('.label-os').text(d['Guest OS']);
 			vm.find('.label-mem').text(d['Memory size']);
-			vm.find('.state').removeClass('state-running state-stoped')
-				.addClass(d.state == 'running' ? 'state-running' : 'state-stoped');
+			vm.removeClass('state-running state-stoped')
+				.addClass(d.state == 'running' ? 'running' : 'stoped');
+//			vm.find('.state').removeClass('state-running state-stoped')
+//				.addClass(d.state == 'running' ? 'state-running' : 'state-stoped');
 			vm.find('[uuid="{uuid}"]').attr('uuid', d['UUID']);
 			vm.appendTo(baseDiv);
 
