@@ -10,4 +10,6 @@ exports.managerPath = `"${exports.basePath}/VBoxManage"`;
 exports.encoding = 'Shift_JIS';
 // UUID Length
 exports.uuidLength = 38;
+// Server Name
+exports.serverName = 'VM Server';
 

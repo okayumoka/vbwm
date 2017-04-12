@@ -28,6 +28,7 @@ $(function() {
 		};
 
 		var clear = function() {
+			$(target).scrollTop(0);
 			table.find('tbody').empty();
 		};
 
@@ -44,8 +45,15 @@ $(function() {
 				row.appendTo(tbody);
 			}
 
+			$(screen).css({ opacity: 0 }).show();
 			$(target).scrollTop(0);
-			$(screen).plainModal('open');
+			$(screen).css({ opacity: 1 }).hide();
+
+			$(screen).plainModal('open', {
+				open: function() {
+					//$(target).scrollTop(0);
+				}
+			});
 		};
 
 		method.hide = function() {

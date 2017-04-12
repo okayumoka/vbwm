@@ -6,7 +6,7 @@
 /* #FFFFFF 白 */
 /* #B8B89F ベージュ */
 
-/* #73D100 グリーン② */
+/* #77d800 グリーン② */
 
 html, body {
 	margin: 0;
@@ -33,6 +33,11 @@ header h1 {
 	margin: 0;
 	padding: 10px 15px;
 	font-size: 1.5em;
+}
+header .version {
+	font-size: 0.65em;
+	font-weight: normal;
+	margin-left: 10px;
 }
 
 header + article {
@@ -62,15 +67,15 @@ article > h2 {
 	border-left: solid 15px #B8B89F;
 	border-radius: 5px;
 	padding: 10px 10px 0 10px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 .vm-list .vm.running {
-	border: solid 1px #73D100;
-	border-left: solid 15px #73D100;
+	border: solid 1px #77d800;
+	border-left: solid 15px #77d800;
 }
 
 .vm-list .vm .info {
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 .vm-list .vm .label-name {
 	display: block;
@@ -81,7 +86,7 @@ article > h2 {
 	border-bottom: solid 1px #B8B89F;
 }
 .vm-list .vm.running .label-name {
-	border-bottom: solid 1px #73D100;
+	border-bottom: solid 1px #77d800;
 }
 
 .vm-list .vm .state {
@@ -101,7 +106,7 @@ article > h2 {
 	left: 0;
 	font-size: 24px;
 }
-.vm-list .vm .state i.running { color: #73D100; }
+.vm-list .vm .state i.running { color: #77d800; }
 .vm-list .vm .state i.stoped { color: #FF3B77; }
 .vm-list .vm.running .state i.running { display: inline-block; }
 .vm-list .vm.running .state i.stoped { display: none; }
