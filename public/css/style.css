@@ -1,4 +1,3 @@
-
 /* https://color.adobe.com/ja/Digerati-color-theme-231178/ */
 /* #52656B グレー */
 /* #FF3B77 ピンク */
@@ -54,6 +53,27 @@ article h2 {
 }
 article > h2 {
 	padding: 5px 0 15px 0;
+}
+
+.vm-refresh-button {
+	background: none;
+	border: solid 1px #FF3B77;
+	border-radius: 50% 50%;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	color: #FF3B77;
+	font-size: 15px;
+	font-weight: normal;
+	transition-duration: 300ms;
+	margin-left: 5px;
+	padding: 0;
+}
+.vm-refresh-button:hover {
+	cursor: pointer;
+	background: #FF3B77;
+	color: #FFFFFF;
+	transition-duration: 300ms;
 }
 
 .vm-list {
@@ -179,7 +199,7 @@ article > h2 {
 .vm-info-table {
 	border-collapse: collapse;
 }
-.vm-info-table th, 
+.vm-info-table th,
 .vm-info-table td {
 	text-align: left;
 	max-width: 500px;
@@ -197,4 +217,3 @@ article > h2 {
 .vm-info-table .key {
 	white-space: nowrap;
 }
-

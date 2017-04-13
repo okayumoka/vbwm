@@ -13,7 +13,7 @@ var execListVms = function(opt = 'vms') {
 	let stdoutStr = iconv.decode(stdout, encoding);
 
 	let lines = stdoutStr.split(/\r\n|\n|\r/);
-	let list = []; 
+	let list = [];
 	lines.forEach((line) => {
 		line = line.trim();
 		if (line == '') return;
@@ -51,7 +51,7 @@ exports.getVMInfo = function(uuid) {
 	let stdoutStr = iconv.decode(stdout, encoding);
 
 	let lines = stdoutStr.split(/\r\n|\n|\r/);
-	let map = {}; 
+	let map = {};
 	lines.forEach((line) => {
 		line = line.trim();
 		if (line == '') return;
@@ -124,8 +124,3 @@ exports.reset = function(uuid) {
 	let stdout = execSync(cmd);
 	return iconv.decode(stdout, encoding);
 };
-
-
-
-
-

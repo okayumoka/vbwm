@@ -27,10 +27,10 @@ $(function() {
 	window.Loading = (function() {
 
 		var method = {};
-		var baseHtml = 
+		var baseHtml =
 			'<div class="wrapper">' +
 			'<div class="center">' +
-			'<div class="loader"></div>' + 
+			'<div class="loader"></div>' +
 			'<span class="message"></span>'
 			'</div>';
 			'</div>';
@@ -106,5 +106,3 @@ $(function() {
 		return method;
 	})();
 });
-
-

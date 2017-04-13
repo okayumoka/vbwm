@@ -4,16 +4,16 @@ $(function() {
 		var method = {};
 		var screen = '#vm-info-screen';
 		var target = '#vm-info';
-		var baseHtml = 
-			'<table class="vm-info-table">' + 
-			'<thead>' + 
-			'<tr>' + 
+		var baseHtml =
+			'<table class="vm-info-table">' +
+			'<thead>' +
+			'<tr>' +
 			'</tr>' + 
-			'</thead>' + 
-			'<tbody>' + 
-			'</tbody>' + 
+			'</thead>' +
+			'<tbody>' +
+			'</tbody>' +
 			'</table>';
-		var rowHtml = 
+		var rowHtml =
 			'<tr class="vm-info-table-row">' +
 			'<th class="key"></td>' +
 			'<td class="value"></td>' +
@@ -67,4 +67,3 @@ $(function() {
 		return method;
 	})();
 });
-
