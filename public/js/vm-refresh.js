@@ -1,5 +1,5 @@
 $(function() {
-	window.VmInfo = (function() {
+	window.VmRefresh = (function() {
 		var method = {};
 		var target = '#vm-refresh';
 		var baseHtml =
