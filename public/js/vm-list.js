@@ -2,7 +2,7 @@
 $(function() {
 	window.VmList = (function() {
 		var method = {};
-		
+
 		var target = '#vm-list';
 		var baseUrl = '.';
 		var baseHtml =
@@ -22,12 +22,38 @@ $(function() {
 			'    <div class="mem">Mem:<div class="label-mem"></div></div>' +
 			'  </div>' +
 			'  <div class="control">' +
-			'    <button class="button-vminfo" uuid="{uuid}">Info</button>' +
-			'    <button class="button-vmstart" uuid="{uuid}">Start</button>' +
-			'    <button class="button-vmstop" uuid="{uuid}">Stop (Save state)</button>' +
-			'    <button class="button-vmresume" uuid="{uuid}">Resume</button>' +
-			'    <button class="button-vmpause" uuid="{uuid}">Pause</button>' +
-			'    <button class="button-vmpoweroff" uuid="{uuid}">Power Off</button>' +
+			'    <button class="button-vminfo" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-info-circle" aria-hidden="true"></i>' +
+			'      Info' +
+			'    </button>' +
+			'    <button class="button-vmstart" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-power-off" aria-hidden="true"></i>' +
+			'      Start' +
+			'    </button>' +
+			'    <button class="button-vmstop" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-save" aria-hidden="true"></i>' +
+			'      Stop (Save state)' +
+			'    </button>' +
+			'    <button class="button-vmresume" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-play-circle" aria-hidden="true"></i>' +
+			'      Resume' +
+			'    </button>' +
+			'    <button class="button-vmpause" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-pause-circle" aria-hidden="true"></i>' +
+			'      Pause' +
+			'    </button>' +
+			'    <button class="button-vmpoweroff" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-ban" aria-hidden="true"></i>' +
+			'      Power Off' +
+			'    </button>' +
+			'    <button class="button-vmclone" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-clone" aria-hidden="true"></i>' +
+			'      Clone' +
+			'    </button>' +
+			'    <button class="button-vmdestroy" uuid="{uuid}">' +
+			'      <i class="stoped fa fa-bomb" aria-hidden="true"></i>' +
+			'      Destroy' +
+			'    </button>' +
 			'  </div>' +
 			'</div>';
 		var baseDiv = $(baseHtml).appendTo($(target));

@@ -56,22 +56,21 @@ article > h2 {
 }
 
 .vm-refresh-button {
-	background: none;
-	border: solid 1px #FF3B77;
-	border-radius: 50% 50%;
-	width: 30px;
-	height: 30px;
-	text-align: center;
-	color: #FF3B77;
-	font-size: 15px;
+	background: #7d9ca6;
+	border-radius: 4px;
+	border: solid 1px #7d9ca6;
+	color: #FFFFFF;
+	font-size: 0.8em;
 	font-weight: normal;
+	padding: 5px 10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
 	transition-duration: 300ms;
-	margin-left: 5px;
-	padding: 0;
+	margin-left: 15px;
 }
 .vm-refresh-button:hover {
 	cursor: pointer;
-	background: #FF3B77;
+	background: #7d9ca6;
 	color: #FFFFFF;
 	transition-duration: 300ms;
 }
@@ -83,8 +82,8 @@ article > h2 {
 	position: relative;
 	width: 100%;
 	min-width: 500px;
-	border: solid 1px #B8B89F;
-	border-left: solid 15px #B8B89F;
+	border: solid 1px #7d9ca6;
+	border-left: solid 15px #7d9ca6;
 	border-radius: 5px;
 	padding: 10px 10px 0 10px;
 	margin-bottom: 15px;
@@ -103,7 +102,7 @@ article > h2 {
 	font-weight: bold;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
-	border-bottom: solid 1px #B8B89F;
+	border-bottom: solid 1px #7d9ca6;
 }
 .vm-list .vm.running .label-name {
 	border-bottom: solid 1px #77d800;
@@ -159,7 +158,7 @@ article > h2 {
 
 
 .vm-list .vm button {
-	background: none;
+	/*background: none;
 	border-radius: 4px;
 	border: solid 1px #FF3B77;
 	color: #FF3B77;
@@ -168,10 +167,21 @@ article > h2 {
 	padding: 5px 20px;
 	margin-right: 5px;
 	margin-bottom: 10px;
+	transition-duration: 300ms;*/
+	background: #7d9ca6;
+	border-radius: 4px;
+	border: solid 1px #7d9ca6;
+	color: #FFFFFF;
+	font-size: 1em;
+	font-weight: normal;
+	padding: 5px 10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
 	transition-duration: 300ms;
 }
 .vm-list .vm button:hover {
 	cursor: pointer;
+	border: solid 1px #FF3B77;
 	background: #FF3B77;
 	color: #FFFFFF;
 	transition-duration: 300ms;

@@ -4,7 +4,8 @@ $(function() {
 		var target = '#vm-refresh';
 		var baseHtml =
 			'<button class="vm-refresh-button">' +
-			'  <i class="fa fa-refresh" aria-hidden="true"></i>' +
+			'  <i class="fa fa-refresh" aria-hidden="true">' +
+			'  Refresh</i>' +
 			'</button>';
 
 		var button;
