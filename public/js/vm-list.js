@@ -78,6 +78,12 @@ $(function() {
 			baseDiv.on('click', 'button.button-vminfo', function() {
 				onClickControlVm($(this).attr('uuid'), 'info');
 			});
+			baseDiv.on('click', 'button.button-vmclone', function() {
+				onClickVmClone($(this).attr('uuid'));
+			});
+			baseDiv.on('click', 'button.button-vmdestroy', function() {
+				onClickControlVm($(this).attr('uuid'), 'destroy');
+			});
 		};
 
 		var clear = function() {
@@ -173,7 +179,7 @@ $(function() {
 		var checkServerError = function(data) {
 			if (data.status == null) {
 				alert('サーバでエラーが発生しました。');
-				return;
+				return false;
 			}
 			if (data.status != 'success') {
 				alert('サーバでエラーが発生しました。' + data.message);
@@ -226,25 +232,30 @@ $(function() {
 			});
 		};
 
-		var onClickVmStart = function(uuid) {
-			onClickControlVm(uuid, 'start');
+		var onClickVmClone = function(uuid) {
+			var vmName = getVmNameByUUID(uuid);
+			window.VmCloneDialog.show(uuid, vmName);
 		};
 
-		var onClickVmStop = function(uuid) {
-			onClickControlVm(uuid, 'stop');
-		};
-
-		var onClickVmResume = function(uuid) {
-			onClickControlVm(uuid, 'resume');
-		};
-
-		var onClickVmPause = function(uuid) {
-			onClickControlVm(uuid, 'pause');
-		};
-
-		var onClickVmInfo = function(uuid) {
-			onClickControlVm(uuid, 'info');
-		};
+		// var onClickVmStart = function(uuid) {
+		// 	onClickControlVm(uuid, 'start');
+		// };
+		//
+		// var onClickVmStop = function(uuid) {
+		// 	onClickControlVm(uuid, 'stop');
+		// };
+		//
+		// var onClickVmResume = function(uuid) {
+		// 	onClickControlVm(uuid, 'resume');
+		// };
+		//
+		// var onClickVmPause = function(uuid) {
+		// 	onClickControlVm(uuid, 'pause');
+		// };
+		//
+		// var onClickVmInfo = function(uuid) {
+		// 	onClickControlVm(uuid, 'info');
+		// };
 
 		init();
 		clear();

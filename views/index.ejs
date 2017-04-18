@@ -6,20 +6,24 @@
 
 	<!-- libs -->
 	<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="./lib/jquery.plainmodal.min.js"></script>
 
 	<!-- styles -->
-	<link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,700">
 	<link rel="stylesheet" type="text/css" href="./css/loader.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
 
 	<!-- scripts -->
 	<script src="./js/common.js"></script>
 	<script src="./js/vm-info.js"></script>
 	<script src="./js/vm-list.js"></script>
 	<script src="./js/vm-refresh.js"></script>
+	<script src="./js/vm-clone-dialog.js"></script>
+	<script src="./js/yes-no-dialog.js"></script>
 </head>
 <body>
 
@@ -43,6 +47,24 @@
 			<!-- insert virtual machine infomation into here. -->
 		</div>
 	</article>
+
+	<div id="yes-no-dialog" class="dialog" style="display:none;">
+		<p class="yes-no-dialog-message dialog-message"></p>
+		<div class="yes-no-dialog-buttons dialog-buttons">
+			<button class="yes-no-dialog-cancel dialog-cancel">Cancel</button>
+			<button class="yes-no-dialog-ok dialog-ok">OK</button>
+		</div>
+	</div>
+
+	<div id="vm-clone-dialog" class="dialog" style="display:none;">
+		<h3>Name of new VM:</h3>
+		<input type="text" class="vm-clone-dialog-name" maxlength="60">
+		<div class="vm-clone-dialog-buttons dialog-buttons">
+			<button class="vm-clone-dialog-cancel dialog-cancel">Cancel</button>
+			<button class="vm-clone-dialog-clone dialog-ok">Create Clone</button>
+		</div>
+		<div style="height:0, clear:both;"></div>
+	</div>
 
 </body>
 </html>

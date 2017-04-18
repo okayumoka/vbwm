@@ -4,7 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const vboxm = require('../vm/vboxm.js');
- 
+
 router.get('/vm/list', function (req, res) {
 	let vmList = vboxm.getVMInfoList();
 
@@ -46,14 +46,23 @@ router.get('/vm/pause/:uuid', function (req, res) {
 
 router.get('/vm/poweroff/:uuid', function (req, res) {
 	let stdout = vboxm.poweroff(req.params.uuid);
-    res.send({ action: 'pause', status: 'success', message: stdout });
+    res.send({ action: 'poweroff', status: 'success', message: stdout });
 });
-
 
 router.get('/vm/info/:uuid', function (req, res) {
 	let stdout = vboxm.getVMInfo(req.params.uuid);
     res.send({ action: 'info', status: 'success', message: '', info: stdout });
 });
 
-module.exports = router;
+router.post('/vm/clone/:uuid', function (req, res) {
+	let stdout = vboxm.clone(req.params.uuid, req.body.name);
+    res.send({ action: 'clone', status: 'success', message: stdout});
+});
 
+router.get('/vm/destroy/:uuid', function (req, res) {
+	let stdout = vboxm.delete(req.params.uuid);
+    res.send({ action: 'destroy', status: 'success', message: stdout});
+});
+
+
+module.exports = router;

@@ -126,14 +126,12 @@ exports.reset = function(uuid) {
 };
 
 exports.clone = function(uuid, name) {
-	// VBoxManage clonevm 8a07a800-4bef-4cc7-9581-6d03a2fab45f --mode machine --name "クローン テスト　です" --register
 	let cmd = `${managerPath} clonevm ${uuid} --register --mode machine --name "${name}"`;
 	let stdout = execSync(cmd);
 	return iconv.decode(stdout, encoding);
 };
 
 exports.delete = function(uuid, deleteFlag = true) {
-	// TODO
 	let cmd = `${managerPath} unregistervm ${uuid}`
 	if (deleteFlag) cmd += ' --delete'
 	let stdout = execSync(cmd);
