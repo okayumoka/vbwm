@@ -200,62 +200,55 @@ $(function() {
 		};
 
 		var onClickControlVm = function(uuid, action) {
-			if (action != 'info') {
+			var okAction = function() {
+				console.log(action + ' : ' + uuid);
+				window.Loading.show();
+				$.ajax({
+					'url': baseUrl + '/vm/' + action + '/' + uuid,
+					'method': 'GET',
+					'async': true,
+					'dataType': 'json',
+					'timeout': 60000
+				}).done(function(data) {
+					window.Loading.hide();
+					console.log(data);
+					if (checkServerError(data)) {
+						if (action == 'info') {
+							VmInfo.show(data.info);
+						} else {
+							getVmList(); // 再読み込み
+						}
+					}
+				}).fail(function(jqXHR, textStatus) {
+					window.Loading.hide();
+					alert(textStatus);
+				});
+			};
+			if (action == 'info') {
+				okAction();
+			} else if (action == 'destroy') {
+				// 二回出す
+				window.YesNoDialog
+					.show('Danger!', 'VM will delete from storage, and cannot be restored. OK?')
+					.ok(function() {
+						window.YesNoDialog
+						.show('Confirm', 'Really destory "' + getVmNameByUUID(uuid) + '" ?')
+						.ok(okAction);
+					});
+			} else {
 				var vmName = getVmNameByUUID(uuid);
 				var actionName = action.substring(0,1).toUpperCase() + action.substring(1);
-				var confirmMes = actionName + ' VM : ' + vmName + ' ?';
-				if(!window.confirm(confirmMes)) {
-					return;
-				}
+				var confirmMes = actionName + ' "' + vmName + '" ?';
+				window.YesNoDialog
+					.show('Confirm', confirmMes)
+					.ok(okAction);
 			}
-			console.log(action + ' : ' + uuid);
-			window.Loading.show();
-			$.ajax({
-				'url': baseUrl + '/vm/' + action + '/' + uuid,
-				'method': 'GET',
-				'async': true,
-				'dataType': 'json',
-				'timeout': 60000
-			}).done(function(data) {
-				window.Loading.hide();
-				console.log(data);
-				if (checkServerError(data)) {
-					if (action == 'info') {
-						VmInfo.show(data.info);
-					} else {
-						getVmList(); // 再読み込み
-					}
-				}
-			}).fail(function(jqXHR, textStatus) {
-				window.Loading.hide();
-				alert(textStatus);
-			});
 		};
 
 		var onClickVmClone = function(uuid) {
 			var vmName = getVmNameByUUID(uuid);
 			window.VmCloneDialog.show(uuid, vmName);
 		};
-
-		// var onClickVmStart = function(uuid) {
-		// 	onClickControlVm(uuid, 'start');
-		// };
-		//
-		// var onClickVmStop = function(uuid) {
-		// 	onClickControlVm(uuid, 'stop');
-		// };
-		//
-		// var onClickVmResume = function(uuid) {
-		// 	onClickControlVm(uuid, 'resume');
-		// };
-		//
-		// var onClickVmPause = function(uuid) {
-		// 	onClickControlVm(uuid, 'pause');
-		// };
-		//
-		// var onClickVmInfo = function(uuid) {
-		// 	onClickControlVm(uuid, 'info');
-		// };
 
 		init();
 		clear();

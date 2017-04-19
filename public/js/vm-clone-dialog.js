@@ -31,7 +31,8 @@ $(function() {
 				autoOpen: true,
 				minWidth: 500,
 				modal: true,
-				title: 'Clone : ' + srcName
+				title: 'Clone : ' + srcName,
+				draggable: false
 			});
 		};
 

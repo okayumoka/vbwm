@@ -1,23 +1,18 @@
 
 $(function() {
-	window.YesNoDialog = (function() {
+	window.InformDialog = (function() {
 		var method = {};
-		var target = '#yes-no-dialog';
+		var target = '#inform-dialog';
 		var onClickOkCallback = null;
-		var onClickCancelCallback = null;
 
-		$(target).on('click', '.yes-no-dialog-cancel', function() {
-			method.hide();
-			if (onClickCancelCallback) onClickCancelCallback();
-		});
-		$(target).on('click', '.yes-no-dialog-ok', function() {
+		$(target).on('click', '.inform-dialog-ok', function() {
 			method.hide();
 			if (onClickOkCallback) onClickOkCallback();
 		});
 
 		method.show = function(title, message, iconClass) {
 			var lines = message.split(/\n/);
-			var p = $(target).find('.yes-no-dialog-message').empty();
+			var p = $(target).find('.inform-dialog-message').empty();
 			for (var i = 0; i < lines.length; i++) {
 				if (i > 0) p.append($('<br />'));
 				p.append($('<span></span>').text(lines[i]));
@@ -39,11 +34,6 @@ $(function() {
 
 		method.ok = function(callback) {
 			onClickOkCallback = callback;
-			return method;
-		};
-
-		method.cancel = function(callback) {
-			onClickCancelCallback = callback;
 			return method;
 		};
 
