@@ -136,27 +136,33 @@ $(function() {
 				switch (d.state) {
 					case 'saved':
 					case 'powered off':
-					vm.find('.button-vmstart').prop('disabled', false);
-					vm.find('.button-vmstop').prop('disabled', true);
-					vm.find('.button-vmresume').prop('disabled', true);
-					vm.find('.button-vmpause').prop('disabled', true);
-					vm.find('.button-vmpoweroff').prop('disabled', true);
-					break;
+						vm.find('.button-vmstart').prop('disabled', false);
+						vm.find('.button-vmstop').prop('disabled', true);
+						vm.find('.button-vmresume').prop('disabled', true);
+						vm.find('.button-vmpause').prop('disabled', true);
+						vm.find('.button-vmpoweroff').prop('disabled', true);
+						vm.find('.button-vmclone').prop('disabled', false);
+						vm.find('.button-vmdestroy').prop('disabled', false);
+						break;
 					case 'paused':
-					vm.find('.button-vmstart').prop('disabled', true);
-					vm.find('.button-vmstop').prop('disabled', true);
-					vm.find('.button-vmresume').prop('disabled', false);
-					vm.find('.button-vmpause').prop('disabled', true);
-					vm.find('.button-vmpoweroff').prop('disabled', true);
-					break;
+						vm.find('.button-vmstart').prop('disabled', true);
+						vm.find('.button-vmstop').prop('disabled', true);
+						vm.find('.button-vmresume').prop('disabled', false);
+						vm.find('.button-vmpause').prop('disabled', true);
+						vm.find('.button-vmpoweroff').prop('disabled', true);
+						vm.find('.button-vmclone').prop('disabled', true);
+						vm.find('.button-vmdestroy').prop('disabled', true);
+						break;
 					case 'running':
 					default:
-					vm.find('.button-vmstart').prop('disabled', true);
-					vm.find('.button-vmstop').prop('disabled', false);
-					vm.find('.button-vmresume').prop('disabled', true);
-					vm.find('.button-vmpause').prop('disabled', false);
-					vm.find('.button-vmpoweroff').prop('disabled', false);
-					break;
+						vm.find('.button-vmstart').prop('disabled', true);
+						vm.find('.button-vmstop').prop('disabled', false);
+						vm.find('.button-vmresume').prop('disabled', true);
+						vm.find('.button-vmpause').prop('disabled', false);
+						vm.find('.button-vmpoweroff').prop('disabled', false);
+						vm.find('.button-vmclone').prop('disabled', true);
+						vm.find('.button-vmdestroy').prop('disabled', true);
+						break;
 				}
 			}
 		};

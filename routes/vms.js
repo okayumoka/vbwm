@@ -8,20 +8,10 @@ const vboxm = require('../vm/vboxm.js');
 router.get('/vm/list', function (req, res) {
 	let vmList = vboxm.getVMInfoList();
 
-
 	vmList.forEach((info) => {
 		info.state = info.State.substring(0, info.State.indexOf(' (since'))
 	});
 	res.send({ action: 'list', status: 'success', list: vmList});
-	// let list = vmList.map((info) => {
-	// 	return {
-	// 		name: info.name,
-	// 		uuid: info.UUID,
-	// 		state: info.State.substring(0, info.State.indexOf(' (since'))
-	// 		os: info['']
-	// 	};
-	// });
-	// res.send({ action: 'list', status: 'success', list: list});
 });
 
 router.get('/vm/start/:uuid', function (req, res) {
@@ -55,7 +45,16 @@ router.get('/vm/info/:uuid', function (req, res) {
 });
 
 router.post('/vm/clone/:uuid', function (req, res) {
-	let stdout = vboxm.clone(req.params.uuid, req.body.name);
+	let name = req.body.name;
+
+	// 入力チェック
+	let regResult = name.match(/^[a-zA-Z0-9!\(\)-=^~\\|@`\[{;+:*\]},<.>/?\_ ]+$/);
+	if (regResult == null) {
+    	res.send({ action: 'clone', status: 'error', message: `Invalid name : ${name}`});
+		return;
+	}
+
+	let stdout = vboxm.clone(req.params.uuid, name);
     res.send({ action: 'clone', status: 'success', message: stdout});
 });
 
