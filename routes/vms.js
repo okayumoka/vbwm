@@ -48,7 +48,8 @@ router.post('/vm/clone/:uuid', function (req, res) {
 	let name = req.body.name;
 
 	// 入力チェック
-	let regResult = name.match(/^[a-zA-Z0-9!\(\)-=^~\\|@`\[{;+:*\]},<.>/?\_ ]+$/);
+	let regResult = name.match(
+		/^[a-zA-Z0-9!\(\)-=^~\\|@`\[{;+:*\]},<.>/?\_ 一-龠ぁ-んーァ-ヶＡ-Ｚａ-ｚ０-９　]+$/);
 	if (regResult == null) {
     	res.send({ action: 'clone', status: 'error', message: `Invalid name : ${name}`});
 		return;
