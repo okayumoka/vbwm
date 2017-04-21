@@ -1,0 +1,30 @@
+{
+	"locale": "ja",
+	"title": "Virtual Machine Web Manager",
+	"message": {
+		"serverError": "サーバーでエラーが発生しました。"
+	},
+	"button": {
+		"ok": "OK",
+		"cancel": "キャンセル",
+		"createClone": "クローン生成",
+		"info": "VM情報",
+		"start": "開始",
+		"stop": "停止 (状態保存)",
+		"resume": "再開",
+		"pause": "一時停止",
+		"poweroff": "電源オフ",
+		"clone": "クローン",
+		"destroy": "破棄"
+	},
+	"label": {
+		"newVmName": "新しい仮想マシンの名前:",
+		"mem": "メモリ"
+	},
+	"state": {
+		"saved": "保存",
+		"poweredoff": "電源オフ",
+		"running": "実行中",
+		"paused": "一時停止"
+	}
+}

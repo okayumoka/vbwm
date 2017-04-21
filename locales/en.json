@@ -1,0 +1,30 @@
+{
+	"locale": "en",
+	"title": "Virtual Machine Web Manager",
+	"message": {
+		"serverError": "Error occurred at server."
+	},
+	"button": {
+		"ok": "OK",
+		"cancel": "Cancel",
+		"createClone": "Create Clone",
+		"info": "Info",
+		"start": "Start",
+		"stop": "Stop (Save state)",
+		"resume": "Resume",
+		"pause": "Pause",
+		"poweroff": "Power Off",
+		"clone": "Clone",
+		"destroy": "Destroy"
+	},
+	"label": {
+		"newVmName": "Name of new VM:",
+		"mem": "Mem"
+	},
+	"state": {
+		"saved": "Saved",
+		"poweredoff": "Powered Off",
+		"running": "Running",
+		"paused": "Paused"
+	}
+}
