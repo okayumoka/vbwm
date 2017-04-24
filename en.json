@@ -1,0 +1,15 @@
+{
+	"locale": "en",
+	"title": "Virtual Machine Web Manager",
+	"message": {
+		"serverError": "Error occurred at server."
+	},
+	"button": {
+		"ok": "OK",
+		"cancel": "Cancel",
+		"createClone": "Create Clone"
+	},
+	"label": {
+		"newVmName": "Name of new VM:"
+	}
+}

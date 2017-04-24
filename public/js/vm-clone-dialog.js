@@ -15,9 +15,10 @@ $(function() {
 			if (name == '') {
 				// TODO error
 			} else {
-				var message = 'Create new VM ?\n(Name: ' + name + ')'
+				var title = window.label.confirm;
+				var message = window.message.clone.replace('{0}', name);
 				window.YesNoDialog
-					.show('Confirm', message)
+					.show(title, message)
 					.ok(function() {
 						createClone();
 					});
@@ -31,7 +32,7 @@ $(function() {
 				autoOpen: true,
 				minWidth: 500,
 				modal: true,
-				title: 'Clone : ' + srcName,
+				title: window.label.cloneTitle.replace('{0}', srcName),
 				draggable: false
 			});
 		};

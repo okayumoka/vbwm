@@ -1,0 +1,42 @@
+{
+	"locale": "ja",
+	"title": "Virtual Machine Web Manager",
+	"message": {
+		"serverError": "サーバーでエラーが発生しました。",
+		"vmdelete": "仮想マシン \"{0}\" を削除しますか？",
+		"vmdelete2": "仮想マシンはディスク上から削除され、復元することはできません。本当に実行しますか？",
+		"start": "『{0}』を開始しますか？",
+		"stop": "『{0}』を停止しますか？",
+		"resume": "『{0}』を再開しますか？",
+		"pause": "『{0}』を一時停止しますか？",
+		"poweroff": "『{0}』の電源を切りますか？",
+		"clone": "新しい仮想マシン『{0}』を作成しますか？"
+	},
+	"button": {
+		"ok": "OK",
+		"cancel": "キャンセル",
+		"createClone": "クローン生成",
+		"refresh": "再読み込み",
+		"info": "VM情報",
+		"start": "開始",
+		"stop": "停止 (状態保存)",
+		"resume": "再開",
+		"pause": "一時停止",
+		"poweroff": "電源オフ",
+		"clone": "クローン",
+		"destroy": "破棄"
+	},
+	"label": {
+		"confirm": "確認",
+		"newVmName": "新しい仮想マシンの名前:",
+		"cloneTitle": "クローン: {0}",
+		"danger": "危険！",
+		"mem": "メモリ"
+	},
+	"state": {
+		"saved": "保存",
+		"poweredoff": "電源オフ",
+		"running": "実行中",
+		"paused": "一時停止"
+	}
+}
