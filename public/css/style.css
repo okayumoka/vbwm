@@ -75,9 +75,6 @@ article > h2 {
 	transition-duration: 300ms;
 }
 
-.vm-list {
-}
-
 .vm-list .vm {
 	position: relative;
 	width: 100%;
@@ -158,16 +155,6 @@ article > h2 {
 
 
 .vm-list .vm button {
-	/*background: none;
-	border-radius: 4px;
-	border: solid 1px #FF3B77;
-	color: #FF3B77;
-	font-size: 1em;
-	font-weight: normal;
-	padding: 5px 20px;
-	margin-right: 5px;
-	margin-bottom: 10px;
-	transition-duration: 300ms;*/
 	background: #7d9ca6;
 	border-radius: 4px;
 	border: solid 1px #7d9ca6;
@@ -242,7 +229,7 @@ article > h2 {
 	margin: 10px 0 10px 0;
 }
 .dialog-message {
-	font-size: 1.1em;
+	font-size: 1.0em;
 	line-height: 1.5em;
 	padding: 0;
 	margin: 10px 0 10px 0;
@@ -259,8 +246,10 @@ article > h2 {
 	color: #FFFFFF;
 	font-size: 1em;
 	font-weight: normal;
-	padding: 10px 15px;
+	padding: 5px 15px;
 	transition-duration: 300ms;
+	min-height: 45px;
+	vertical-align: middle;
 }
 .dialog-cancel:hover,
 .dialog-ok:hover {
@@ -278,3 +267,8 @@ article > h2 {
 	border: solid 1px #888;
 	border-radius: 5px;
 }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+	font-size: 0.9em;
+}
+
+

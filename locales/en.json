@@ -2,12 +2,21 @@
 	"locale": "en",
 	"title": "Virtual Machine Web Manager",
 	"message": {
-		"serverError": "Error occurred at server."
+		"serverError": "Error occurred at server.",
+		"vmdelete": "Destroy \"{0}\" ?",
+		"vmdelete2": "Delete VM from your storage completely, and can not restore, OK?",
+		"start": "Start \"{0}』\" ?",
+		"stop": "Stop \"{0}』\" ?",
+		"resume": "Resume \"{0}』\" ?",
+		"pause": "Pause \"{0}』\" ?",
+		"poweroff": "Poser off \"{0}』\" ?",
+		"clone": "Create new VM \"{0}\" ? "
 	},
 	"button": {
 		"ok": "OK",
 		"cancel": "Cancel",
 		"createClone": "Create Clone",
+		"refresh": "Refresh",
 		"info": "Info",
 		"start": "Start",
 		"stop": "Stop (Save state)",
@@ -18,7 +27,10 @@
 		"destroy": "Destroy"
 	},
 	"label": {
+		"confirm": "Confirm",
 		"newVmName": "Name of new VM:",
+		"cloneTitle": "Clone: {0}",
+		"danger": "Danger!",
 		"mem": "Mem"
 	},
 	"state": {

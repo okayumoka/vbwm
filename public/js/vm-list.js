@@ -168,7 +168,6 @@ $(function() {
 		var getVmNameByUUID = function(uuid) {
 			if (uuid == null || vmData == null) return '';
 			for (var i = 0; i < vmData.length; i++) {
-				console.log(vmData[i].UUID);
 				if (vmData[i].UUID == uuid) {
 					return vmData[i].name;
 				}
@@ -205,19 +204,24 @@ $(function() {
 				okAction();
 			} else if (action == 'destroy') {
 				// 二回出す
+				var vmName = getVmNameByUUID(uuid);
+				var title = window.label.confirm;
+				var message = window.message.vmdelete.replace('{0}', vmName);
 				window.YesNoDialog
-					.show('Danger!', 'VM will delete from storage, and cannot be restored. OK?')
+					.show(title, message)
 					.ok(function() {
+						var title = window.label.danger;
+						var message = window.message.vmdelete2;
 						window.YesNoDialog
-						.show('Confirm', 'Really destory "' + getVmNameByUUID(uuid) + '" ?')
+						.show(title, message)
 						.ok(okAction);
 					});
 			} else {
 				var vmName = getVmNameByUUID(uuid);
-				var actionName = action.substring(0,1).toUpperCase() + action.substring(1);
-				var confirmMes = actionName + ' "' + vmName + '" ?';
+				var title = window.label.confirm;
+				var message = window.message[action].replace('{0}', vmName);
 				window.YesNoDialog
-					.show('Confirm', confirmMes)
+					.show(title, message)
 					.ok(okAction);
 			}
 		};
